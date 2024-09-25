@@ -35,6 +35,7 @@ export default function App() {
                 position: "absolute",
                 top: `${128 + svgSettings.position.y - svgSettings.size / 2}px`,
                 left: `${128 + svgSettings.position.x - svgSettings.size / 2}px`,
+                transform: `skew(${svgSettings.skewX}deg, ${svgSettings.skewY}deg)`,
                 opacity: svgSettings.opacity
               }}
             >

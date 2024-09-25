@@ -29,7 +29,9 @@ const initialState: State = {
     shadowColor: "#0A0B0B",
     shadowBlur: 0,
     shadowOffsetX: 0,
-    shadowOffsetY: 0
+    shadowOffsetY: 0,
+    skewX: 0,
+    skewY: 0
   }
 };
 

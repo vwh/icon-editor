@@ -118,6 +118,24 @@ export default function Sidebar() {
           onValueChange={(value) => updateSvgSetting("fillOpacity", value[0])}
         />
       </ControlGroup>
+      <ControlGroup label="Icon Skew">
+        <ControlSlider
+          label="Icon Skew X"
+          min={-100}
+          max={100}
+          step={0.2}
+          value={[svgSettings.skewX]}
+          onValueChange={(value) => updateSvgSetting("skewX", value[0])}
+        />
+        <ControlSlider
+          label="Icon Skew Y"
+          min={-100}
+          max={100}
+          step={1}
+          value={[svgSettings.skewY]}
+          onValueChange={(value) => updateSvgSetting("skewY", value[0])}
+        />
+      </ControlGroup>
       <ControlGroup label="Shadow">
         <ControlColor
           label="Shadow Color"
