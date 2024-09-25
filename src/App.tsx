@@ -1,9 +1,11 @@
 import { useStore } from "@/store/useStore";
 import type { Icons } from "@/types";
 
+import { cn } from "@/lib/utils";
 import * as svgs from "lucide-react";
 import Navbar from "@/components/navbar";
 import Sidebar from "@/components/sidebar";
+import DotPattern from "@/components/magicui/dot-pattern";
 
 export default function App() {
   const { svgSettings, selectedSvgName } = useStore();
@@ -12,10 +14,11 @@ export default function App() {
   return (
     <>
       <Navbar />
-      <main className="flex h-screen">
+      <main className="flex h-[calc(100vh-64px)] flex-col md:flex-row">
         <Sidebar />
-        <section className="flex h-full w-full items-center justify-center">
+        <section className="relative flex h-full w-full items-center justify-center overflow-hidden bg-background md:shadow-xl">
           <div
+            className="z-50"
             id="svg-container"
             style={{
               width: "256px",
@@ -50,6 +53,11 @@ export default function App() {
               />
             </div>
           </div>
+          <DotPattern
+            className={cn(
+              "[mask-image:radial-gradient(600px_circle_at_center,white,transparent)]"
+            )}
+          />
         </section>
       </main>
     </>

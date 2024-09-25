@@ -63,26 +63,28 @@ export default function IconsDialog() {
         </Button>
       </DialogTrigger>
       <DialogContent>
-        <section className="mt-3 flex flex-col gap-1 text-center">
+        <section className="flex flex-col gap-3 text-center">
           <Input
             type="text"
             placeholder="Search"
+            className="border-[3px]"
             value={searchTerm}
             onChange={handleSearch}
-            className="mb-4"
           />
           <div className="grid grid-cols-5 gap-2">{iconButtons.buttons}</div>
-          <div className="mt-4 flex justify-center gap-2">
+          <div className="flex justify-center gap-2 border-t-2 pt-3">
             <Button
+              className="w-full"
               onClick={() => setCurrentPage((prev) => Math.max(0, prev - 1))}
               disabled={currentPage === 0}
             >
-              Previous
+              <svgs.ChevronLeft />
             </Button>
-            <span className="self-center">
+            {/* <span className="self-center">
               Page {currentPage + 1} of {iconButtons.totalPages}
-            </span>
+            </span> */}
             <Button
+              className="w-full"
               onClick={() =>
                 setCurrentPage((prev) =>
                   Math.min(iconButtons.totalPages - 1, prev + 1)
@@ -90,7 +92,7 @@ export default function IconsDialog() {
               }
               disabled={currentPage === iconButtons.totalPages - 1}
             >
-              Next
+              <svgs.ChevronRight />
             </Button>
           </div>
         </section>

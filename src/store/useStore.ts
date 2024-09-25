@@ -13,25 +13,25 @@ interface Actions {
 }
 
 const initialState: State = {
-  selectedSvgName: "Atom",
+  selectedSvgName: "Apple",
   svgSettings: {
-    size: 64,
-    radius: 0,
-    bgColor: "#ff0000",
-    svgColor: "#000000",
+    size: 190,
+    radius: 30,
+    bgColor: "#BECEDC",
+    svgColor: "#0A0B0B",
     position: { x: 0, y: 0 },
     rotation: 0,
     strokeWidth: 2,
     opacity: 1,
     scale: 1,
-    shadowColor: "#000000",
+    shadowColor: "#0A0B0B",
     shadowBlur: 0,
     shadowOffsetX: 0,
     shadowOffsetY: 0
   }
 };
 
-export const useStore = create<State & Actions>((set, get) => ({
+export const useStore = create<State & Actions>((set) => ({
   ...initialState,
 
   setSvgSettings: (svgSettings: SvgSettings) => {
