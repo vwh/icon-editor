@@ -2,12 +2,7 @@ import React, { useMemo, useState, useCallback } from "react";
 import { useStore } from "@/store/useStore";
 import type { Icons } from "@/types";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-  DialogClose
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import * as svgs from "lucide-react";
@@ -27,25 +22,25 @@ export default function IconsDialog() {
     );
   }, [searchTerm]);
 
-  const iconButtons = useMemo(() => {
+  const { iconButtons, totalPages } = useMemo(() => {
     const totalPages = Math.ceil(filteredIconNames.length / ICONS_PER_PAGE);
-    return {
-      buttons: filteredIconNames
-        .slice(currentPage * ICONS_PER_PAGE, (currentPage + 1) * ICONS_PER_PAGE)
-        .map((name) => {
-          const IconComponent = svgs[name as Icons];
-          return (
-            <MemoizedIconButton
-              key={name}
-              name={name}
-              icon={IconComponent}
-              onClick={() => setSelectedSvgName(name as Icons)}
-            />
-          );
-        }),
-      totalPages
-    };
-  }, [currentPage, setSelectedSvgName, filteredIconNames]);
+    const buttons = filteredIconNames
+      .slice(currentPage * ICONS_PER_PAGE, (currentPage + 1) * ICONS_PER_PAGE)
+      .map((name) => {
+        const SvgComponent = svgs[name as Icons];
+        return (
+          <Button
+            key={name}
+            onClick={() => setSelectedSvgName(name as Icons)}
+            className="flex h-14 w-14 items-center justify-center rounded-lg transition-all hover:opacity-80 md:h-16 md:w-16"
+            title={name}
+          >
+            <SvgComponent className="h-36 w-36" />
+          </Button>
+        );
+      });
+    return { iconButtons: buttons, totalPages };
+  }, [currentPage, setSelectedSvgName, filteredIconNames, selectedSvgName]);
 
   const handleSearch = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,67 +53,46 @@ export default function IconsDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="gooeyRight" className="w-full">
+        <Button className="flex h-12 w-full items-center justify-center gap-2">
           <SvgComponent />
+          <span>Select Icon</span>
         </Button>
       </DialogTrigger>
-      <DialogContent>
-        <section className="flex flex-col gap-3 text-center">
+      <DialogContent className="sm:max-w-[425px]">
+        <div className="flex flex-col gap-4">
           <Input
             type="text"
-            placeholder="Search"
-            className="border-[3px]"
+            placeholder="Search Icons..."
             value={searchTerm}
             onChange={handleSearch}
+            className="w-full"
           />
-          <div className="grid grid-cols-5 gap-2">{iconButtons.buttons}</div>
-          <div className="flex justify-center gap-2 border-t-2 pt-3">
+          <div className="flex flex-wrap items-center justify-center gap-1 p-2">
+            {iconButtons}
+          </div>
+          <div className="flex items-center justify-between">
             <Button
-              className="w-full"
               onClick={() => setCurrentPage((prev) => Math.max(0, prev - 1))}
               disabled={currentPage === 0}
+              variant="outline"
             >
               <svgs.ChevronLeft />
             </Button>
-            {/* <span className="self-center">
-              Page {currentPage + 1} of {iconButtons.totalPages}
-            </span> */}
+            <span>
+              Page {currentPage + 1} of {totalPages}
+            </span>
             <Button
-              className="w-full"
               onClick={() =>
-                setCurrentPage((prev) =>
-                  Math.min(iconButtons.totalPages - 1, prev + 1)
-                )
+                setCurrentPage((prev) => Math.min(totalPages - 1, prev + 1))
               }
-              disabled={currentPage === iconButtons.totalPages - 1}
+              disabled={currentPage === totalPages - 1}
+              variant="outline"
             >
               <svgs.ChevronRight />
             </Button>
           </div>
-        </section>
+        </div>
       </DialogContent>
     </Dialog>
   );
 }
-
-const MemoizedIconButton = React.memo(
-  ({
-    name,
-    icon: Icon,
-    onClick
-  }: {
-    name: string;
-    icon: React.ElementType;
-    onClick: () => void;
-  }) => (
-    <DialogClose>
-      <Button
-        onClick={onClick}
-        className="flex w-full items-center justify-center gap-2"
-        title={name}
-      >
-        <Icon size={24} />
-      </Button>
-    </DialogClose>
-  )
-);

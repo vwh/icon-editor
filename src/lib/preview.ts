@@ -1,19 +1,9 @@
+import { defaultSvgSettings } from "@/store/useStore";
+
 const base = {
-  fillColor: "#0A0B0B",
-  fillOpacity: 0,
+  ...defaultSvgSettings,
   size: 30,
-  radius: 10,
-  bgColor: "#BECEDC",
-  svgColor: "#0A0B0B",
-  position: { x: 0, y: 0 },
-  rotation: 0,
-  strokeWidth: 2,
-  opacity: 1,
-  scale: 1,
-  shadowColor: "#0A0B0B",
-  shadowBlur: 0,
-  shadowOffsetX: 0,
-  shadowOffsetY: 0
+  radius: 10
 };
 
 const variation0 = {
