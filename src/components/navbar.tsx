@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { useStore } from "@/store/useStore";
 import { variations } from "@/lib/preview";
+import { randomIconColor, randomIconName } from "@/lib/random";
 import type { Icons, SvgSettings } from "@/types";
 
 import { Button } from "@/components/ui/button";
@@ -75,7 +76,8 @@ const VariationButton: React.FC<VariationButtonProps> = React.memo(
 );
 
 const Navbar: React.FC = () => {
-  const { selectedSvgName, setSvgSettings } = useStore();
+  const { selectedSvgName, setSelectedSvgName, setSvgSettings, svgSettings } =
+    useStore();
   const SvgComponent = svgs[selectedSvgName as Icons];
 
   const handleVariationClick = (svgSettings: SvgSettings) => {
@@ -83,6 +85,17 @@ const Navbar: React.FC = () => {
       ...svgSettings,
       size: 190,
       radius: 30
+    });
+  };
+
+  const handleRandomClick = () => {
+    setSelectedSvgName(randomIconName());
+    setSvgSettings({
+      ...svgSettings,
+      bgColor: randomIconColor(),
+      svgColor: randomIconColor(),
+      fillColor: randomIconColor(),
+      fillOpacity: Math.random() > 0.5 ? 1 : 0
     });
   };
 
@@ -103,6 +116,14 @@ const Navbar: React.FC = () => {
         <span>Icons Editor</span>
       </a>
       <div className="flex gap-1">
+        <button
+          className="mx-2 items-center justify-center rounded-lg"
+          type="button"
+          title="Random Variation"
+          onClick={handleRandomClick}
+        >
+          <svgs.Dices className="h-[25px] w-[25px]" />
+        </button>
         {variations.map((svgSettings, index) => (
           <VariationButton
             key={index}
