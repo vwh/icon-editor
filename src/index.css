@@ -4,29 +4,6 @@
 
 @layer base {
   :root {
-    --background: 208 36% 100%;
-    --foreground: 208 51% 1%;
-    --muted: 208 40% 85%;
-    --muted-foreground: 208 10% 35%;
-    --popover: 208 36% 100%;
-    --popover-foreground: 208 51% 1%;
-    --card: 0 0% 99%;
-    --card-foreground: 208 51% 0%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --primary: 208 67% 75%;
-    --primary-foreground: 208 67% 30%;
-    --secondary: 208 15% 91%;
-    --secondary-foreground: 208 15% 31%;
-    --accent: 208 15% 91%;
-    --accent-foreground: 208 15% 31%;
-    --destructive: 4 99% 32%;
-    --destructive-foreground: 4 99% 92%;
-    --ring: 208 67% 90%;
-    --radius: 0.5rem;
-  }
-
-  .dark {
     --background: 208 57% 0%;
     --foreground: 208 21% 99%;
     --muted: 208 40% 15%;
@@ -46,6 +23,7 @@
     --destructive: 4 99% 46%;
     --destructive-foreground: 0 0% 100%;
     --ring: 208 67% 90%;
+    --radius: 0.5rem;
   }
 }
 
@@ -67,12 +45,12 @@
 
   ::-webkit-scrollbar-track {
     background: var(--scrollbar-track);
-    border-radius: 4px;
+    border-radius: 2px;
   }
 
   ::-webkit-scrollbar-thumb {
     background: var(--scrollbar-thumb);
-    border-radius: 4px;
+    border-radius: 2px;
     transition: background 0.2s ease-in-out;
   }
 
@@ -81,12 +59,6 @@
   }
 
   :root {
-    --scrollbar-track: hsl(var(--secondary));
-    --scrollbar-thumb: hsl(var(--muted-foreground) / 0.5);
-    --scrollbar-thumb-hover: hsl(var(--muted-foreground) / 0.7);
-  }
-
-  .dark {
     --scrollbar-track: hsl(var(--secondary));
     --scrollbar-thumb: hsl(var(--muted-foreground) / 0.5);
     --scrollbar-thumb-hover: hsl(var(--muted-foreground) / 0.7);
