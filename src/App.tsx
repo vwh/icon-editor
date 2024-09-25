@@ -39,7 +39,8 @@ export default function App() {
               }}
             >
               <SvgComponent
-                fill="none"
+                fill={svgSettings.fillColor}
+                fillOpacity={svgSettings.fillOpacity}
                 stroke={svgSettings.svgColor}
                 strokeWidth={svgSettings.strokeWidth}
                 strokeLinecap="round"

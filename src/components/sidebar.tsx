@@ -95,12 +95,27 @@ export default function Sidebar() {
           onValueChange={(value) => updateSvgSetting("strokeWidth", value[0])}
         />
         <ControlSlider
-          label="Opacity"
+          label="Icon Opacity"
           min={0}
           max={1}
           step={0.01}
           value={[svgSettings.opacity]}
           onValueChange={(value) => updateSvgSetting("opacity", value[0])}
+        />
+      </ControlGroup>
+      <ControlGroup label="Filling">
+        <ControlColor
+          label="Fill Color"
+          value={svgSettings.fillColor}
+          onChange={(color) => updateSvgSetting("fillColor", color)}
+        />
+        <ControlSlider
+          label="Fill Opacity"
+          min={0}
+          max={1}
+          step={0.01}
+          value={[svgSettings.fillOpacity]}
+          onValueChange={(value) => updateSvgSetting("fillOpacity", value[0])}
         />
       </ControlGroup>
       <ControlGroup label="Shadow">

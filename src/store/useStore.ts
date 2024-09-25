@@ -15,6 +15,8 @@ interface Actions {
 const initialState: State = {
   selectedSvgName: "Apple",
   svgSettings: {
+    fillColor: "#0A0B0B",
+    fillOpacity: 0,
     size: 190,
     radius: 30,
     bgColor: "#BECEDC",
