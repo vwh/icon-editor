@@ -35,7 +35,7 @@ export default function IconsDialog() {
             className="flex h-14 w-14 items-center justify-center rounded-lg transition-all hover:opacity-80 md:h-16 md:w-16"
             title={name}
           >
-            <SvgComponent className="h-36 w-36" />
+            <SvgComponent className="h-full w-full" />
           </Button>
         );
       });
