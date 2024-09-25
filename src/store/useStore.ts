@@ -31,7 +31,11 @@ export const defaultSvgSettings: SvgSettings = {
   skewX: 0,
   skewY: 0,
   iconBlur: 0,
-  backgroundBlur: 0
+  backgroundBlur: 0,
+  innerShadowColor: "#0A0B0B",
+  innerShadowBlur: 3,
+  innerShadowX: 2,
+  innerShadowY: 3
 };
 
 const initialState: State = {

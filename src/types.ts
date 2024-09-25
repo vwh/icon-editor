@@ -25,4 +25,8 @@ export type SvgSettings = {
   skewY: number;
   iconBlur: number;
   backgroundBlur: number;
+  innerShadowColor: string;
+  innerShadowBlur: number;
+  innerShadowX: number;
+  innerShadowY: number;
 };

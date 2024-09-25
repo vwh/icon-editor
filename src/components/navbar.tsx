@@ -95,7 +95,11 @@ const Navbar: React.FC = () => {
       bgColor: randomIconColor(),
       svgColor: randomIconColor(),
       fillColor: randomIconColor(),
-      fillOpacity: Math.random() > 0.5 ? 1 : 0
+      fillOpacity: Math.random() > 0.5 ? 1 : 0,
+      innerShadowColor: "#0A0B0B",
+      innerShadowBlur: Math.floor(Math.random() * 4),
+      innerShadowX: 2,
+      innerShadowY: 3
     });
   };
 

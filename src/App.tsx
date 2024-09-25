@@ -41,7 +41,8 @@ const App: React.FC = () => {
   const svgStyle = useMemo(
     () => ({
       position: "absolute" as const,
-      transform: `rotate(${svgSettings.rotation}deg) scale(${svgSettings.scale})`
+      transform: `rotate(${svgSettings.rotation}deg) scale(${svgSettings.scale})`,
+      filter: `drop-shadow(${svgSettings.innerShadowX}px ${svgSettings.innerShadowY}px ${svgSettings.innerShadowBlur}px ${svgSettings.innerShadowColor})`
     }),
     [svgSettings]
   );

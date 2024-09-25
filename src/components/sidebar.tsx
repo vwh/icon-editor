@@ -132,6 +132,39 @@ function IconControlGroup() {
         value={[svgSettings.iconBlur]}
         onValueChange={(value) => updateSvgSetting("iconBlur", value[0])}
       />
+      <ControlGroup label="Inner Shadow">
+        <ControlColor
+          label="Inner Shadow Color"
+          value={svgSettings.innerShadowColor}
+          onChange={(color) => updateSvgSetting("innerShadowColor", color)}
+        />
+        <ControlSlider
+          label="Inner Shadow Blur"
+          min={0}
+          max={20}
+          step={1}
+          value={[svgSettings.innerShadowBlur]}
+          onValueChange={(value) =>
+            updateSvgSetting("innerShadowBlur", value[0])
+          }
+        />
+        <ControlSlider
+          label="Shadow Offset X"
+          min={-20}
+          max={20}
+          step={1}
+          value={[svgSettings.innerShadowX]}
+          onValueChange={(value) => updateSvgSetting("innerShadowX", value[0])}
+        />
+        <ControlSlider
+          label="Inner Shadow Offset Y"
+          min={-20}
+          max={20}
+          step={1}
+          value={[svgSettings.innerShadowY]}
+          onValueChange={(value) => updateSvgSetting("innerShadowY", value[0])}
+        />
+      </ControlGroup>
       <ControlGroup label="Icon Dimensions">
         <ControlSlider
           label="Icon Size"
