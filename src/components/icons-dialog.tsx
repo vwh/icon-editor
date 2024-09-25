@@ -5,24 +5,21 @@ import type { Icons } from "@/types";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger
+  DialogTrigger,
+  DialogClose
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import * as svgs from "lucide-react";
 
-const ICONS_PER_PAGE = 20;
+const ICONS_PER_PAGE = 35;
 
 export default function IconsDialog() {
-  const { setSelectedSvgName } = useStore();
+  const { setSelectedSvgName, selectedSvgName } = useStore();
   const [currentPage, setCurrentPage] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // const SvgComponent = svgs[selectedSvgName as Icons];
+  const SvgComponent = svgs[selectedSvgName as Icons];
 
   const filteredIconNames = useMemo(() => {
     return Object.keys(svgs.icons).filter((name) =>
@@ -61,20 +58,15 @@ export default function IconsDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
+        <Button variant="gooeyRight" className="w-full">
+          <SvgComponent />
+        </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
-          </DialogDescription>
-        </DialogHeader>
-        <section className="flex flex-col gap-2 text-center">
-          <h2 className="mb-2 text-xl font-bold">Select an Icon</h2>
+      <DialogContent>
+        <section className="mt-3 flex flex-col gap-1 text-center">
           <Input
             type="text"
-            placeholder="Search icons..."
+            placeholder="Search"
             value={searchTerm}
             onChange={handleSearch}
             className="mb-4"
@@ -102,9 +94,6 @@ export default function IconsDialog() {
             </Button>
           </div>
         </section>
-        <DialogFooter>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
@@ -120,12 +109,14 @@ const MemoizedIconButton = React.memo(
     icon: React.ElementType;
     onClick: () => void;
   }) => (
-    <Button
-      onClick={onClick}
-      className="flex w-full items-center justify-center gap-2"
-      title={name}
-    >
-      <Icon size={24} />
-    </Button>
+    <DialogClose>
+      <Button
+        onClick={onClick}
+        className="flex w-full items-center justify-center gap-2"
+        title={name}
+      >
+        <Icon size={24} />
+      </Button>
+    </DialogClose>
   )
 );
