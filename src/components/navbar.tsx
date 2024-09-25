@@ -95,7 +95,7 @@ const Navbar: React.FC = () => {
         className="hidden items-center gap-2 text-xl font-bold hover:animate-pulse md:flex"
       >
         <img
-          src="/logo.webp"
+          src="./logo.webp"
           title="Icons editor logo"
           className="h-10 w-auto"
           alt="Logo"
