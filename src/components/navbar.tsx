@@ -29,7 +29,6 @@ export default function Navbar() {
           >
             <div
               className="z-50"
-              id="svg-container"
               style={{
                 width: "50px",
                 height: "50px",
