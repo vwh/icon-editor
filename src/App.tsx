@@ -6,6 +6,7 @@ import * as svgs from "lucide-react";
 import Navbar from "@/components/navbar";
 import Sidebar from "@/components/sidebar";
 import DotPattern from "@/components/magicui/dot-pattern";
+import ThemeToggle from "@/components/theme/theme-toggle";
 
 export default function App() {
   const { svgSettings, selectedSvgName } = useStore();
@@ -13,8 +14,11 @@ export default function App() {
 
   return (
     <>
+      <div className="absolute bottom-[20px] right-[20px] z-50">
+        <ThemeToggle />
+      </div>
       <Navbar />
-      <main className="flex h-[calc(100vh-64px)] flex-col md:flex-row">
+      <main className="flex h-[calc(100vh-68px)] flex-col md:flex-row">
         <Sidebar />
         <section className="relative flex h-full w-full items-center justify-center overflow-hidden bg-background md:shadow-xl">
           <div
