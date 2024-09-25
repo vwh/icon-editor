@@ -56,12 +56,14 @@ export default function Sidebar() {
         <Button
           className="w-full rounded-none rounded-bl-lg rounded-tl-lg border-r-2"
           onClick={() => setTapName("icon")}
+          disabled={tapName === "icon"}
         >
           Icon
         </Button>
         <Button
           className="w-full rounded-none rounded-br-lg rounded-tr-lg"
           onClick={() => setTapName("background")}
+          disabled={tapName === "background"}
         >
           Background
         </Button>

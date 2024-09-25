@@ -48,7 +48,12 @@ const VariationButton: React.FC<VariationButtonProps> = React.memo(
     );
 
     return (
-      <button title="Select template" type="button" onClick={onClick}>
+      <button
+        className="transition-all hover:scale-105 hover:opacity-80"
+        title="Select template"
+        type="button"
+        onClick={onClick}
+      >
         <div className="z-50" style={containerStyle}>
           <div style={svgWrapperStyle}>
             <SvgComponent
@@ -83,7 +88,12 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="flex h-full w-full items-center justify-between gap-2 border-b-2 p-2">
-      <div className="hidden items-center gap-2 text-xl font-bold md:flex">
+      <a
+        href="https://github.com/vwh/icon-editor"
+        target="_blank"
+        rel="noreferrer"
+        className="hidden items-center gap-2 text-xl font-bold hover:animate-pulse md:flex"
+      >
         <img
           src="/logo.webp"
           title="Icons editor logo"
@@ -91,7 +101,7 @@ const Navbar: React.FC = () => {
           alt="Logo"
         />
         <span>Icons Editor</span>
-      </div>
+      </a>
       <div className="flex gap-1">
         {variations.map((svgSettings, index) => (
           <VariationButton

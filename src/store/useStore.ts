@@ -35,7 +35,7 @@ export const defaultSvgSettings: SvgSettings = {
 };
 
 const initialState: State = {
-  selectedSvgName: "Apple",
+  selectedSvgName: "Paintbrush",
   svgSettings: defaultSvgSettings
 };
 
