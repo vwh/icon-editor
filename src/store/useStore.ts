@@ -17,7 +17,7 @@ export const defaultSvgSettings: SvgSettings = {
   fillOpacity: 0,
   size: 190,
   radius: 30,
-  bgColor: "#BECEDC",
+  bgColor: "#D4E7F7",
   svgColor: "#0A0B0B",
   position: { x: 0, y: 0 },
   rotation: 0,

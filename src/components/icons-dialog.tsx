@@ -53,7 +53,10 @@ export default function IconsDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="flex h-12 w-full items-center justify-center gap-2">
+        <Button
+          title="Select icon"
+          className="flex h-12 w-full items-center justify-center gap-2"
+        >
           <SvgComponent />
           <span>Select Icon</span>
         </Button>
