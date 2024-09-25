@@ -1,31 +1,15 @@
-import { useCallback } from "react";
-import type { SvgSettings, Icons } from "@/types";
+import { useStore } from "@/store/useStore";
 
 import { Slider } from "@/components/ui/slider";
 import { Input, type InputProps } from "@/components/ui/input";
 import IconsDialog from "./icons-dialog";
 
-interface SidebarProps {
-  setSvgSettings: React.Dispatch<React.SetStateAction<SvgSettings>>;
-  setSelectedSvgName: React.Dispatch<React.SetStateAction<Icons>>;
-  svgSettings: SvgSettings;
-}
-
-export default function Sidebar({
-  setSvgSettings,
-  svgSettings,
-  setSelectedSvgName
-}: SidebarProps) {
-  const updateSvgSetting = useCallback(
-    (key: string, value: unknown) => {
-      setSvgSettings((prev) => ({ ...prev, [key]: value }));
-    },
-    [setSvgSettings]
-  );
+export default function Sidebar() {
+  const { svgSettings, updateSvgSetting } = useStore();
 
   return (
     <aside className="h-full w-[300px] flex-grow space-y-4 border-r-2 p-4">
-      <IconsDialog setSelectedSvgName={setSelectedSvgName} />
+      <IconsDialog />
       <ControlSlider
         label="Border Radius"
         min={0}

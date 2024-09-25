@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useCallback } from "react";
+import { useStore } from "@/store/useStore";
 import type { Icons } from "@/types";
 
 import {
@@ -16,11 +17,8 @@ import * as svgs from "lucide-react";
 
 const ICONS_PER_PAGE = 20;
 
-interface IconButtonProps {
-  setSelectedSvgName: React.Dispatch<React.SetStateAction<Icons>>;
-}
-
-export default function IconsDialog({ setSelectedSvgName }: IconButtonProps) {
+export default function IconsDialog() {
+  const { setSelectedSvgName } = useStore();
   const [currentPage, setCurrentPage] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
 

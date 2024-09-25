@@ -1,38 +1,19 @@
-import { useState } from "react";
-import type { SvgSettings, Icons } from "@/types";
+import { useStore } from "@/store/useStore";
+import type { Icons } from "@/types";
 
 import * as svgs from "lucide-react";
 import Navbar from "@/components/navbar";
 import Sidebar from "@/components/sidebar";
 
 export default function App() {
-  const [svgSettings, setSvgSettings] = useState<SvgSettings>({
-    size: 64,
-    radius: 0,
-    bgColor: "#ff0000",
-    svgColor: "#000000",
-    position: { x: 0, y: 0 },
-    rotation: 0,
-    strokeWidth: 2,
-    opacity: 1,
-    scale: 1,
-    shadowColor: "#000000",
-    shadowBlur: 0,
-    shadowOffsetX: 0,
-    shadowOffsetY: 0
-  });
-
-  const [selectedSvgName, setSelectedSvgName] = useState<Icons>("Atom");
+  const { svgSettings, selectedSvgName } = useStore();
   const SvgComponent = svgs[selectedSvgName as Icons];
+
   return (
     <>
       <Navbar />
       <main className="flex h-screen">
-        <Sidebar
-          setSvgSettings={setSvgSettings}
-          setSelectedSvgName={setSelectedSvgName}
-          svgSettings={svgSettings}
-        />
+        <Sidebar />
         <section className="flex h-full w-full items-center justify-center">
           <div
             id="svg-container"
