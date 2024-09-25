@@ -31,7 +31,9 @@ const initialState: State = {
     shadowOffsetX: 0,
     shadowOffsetY: 0,
     skewX: 0,
-    skewY: 0
+    skewY: 0,
+    iconBlur: 0,
+    backgroundBlur: 0
   }
 };
 

@@ -27,7 +27,8 @@ export default function App() {
               backgroundColor: svgSettings.bgColor,
               position: "relative",
               overflow: "hidden",
-              boxShadow: `${svgSettings.shadowOffsetX}px ${svgSettings.shadowOffsetY}px ${svgSettings.shadowBlur}px ${svgSettings.shadowColor}`
+              boxShadow: `${svgSettings.shadowOffsetX}px ${svgSettings.shadowOffsetY}px ${svgSettings.shadowBlur}px ${svgSettings.shadowColor}`,
+              filter: `blur(${svgSettings.backgroundBlur}px)`
             }}
           >
             <div
@@ -36,7 +37,8 @@ export default function App() {
                 top: `${128 + svgSettings.position.y - svgSettings.size / 2}px`,
                 left: `${128 + svgSettings.position.x - svgSettings.size / 2}px`,
                 transform: `skew(${svgSettings.skewX}deg, ${svgSettings.skewY}deg)`,
-                opacity: svgSettings.opacity
+                opacity: svgSettings.opacity,
+                filter: `blur(${svgSettings.iconBlur}px)`
               }}
             >
               <SvgComponent

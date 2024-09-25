@@ -118,6 +118,26 @@ export default function Sidebar() {
           onValueChange={(value) => updateSvgSetting("fillOpacity", value[0])}
         />
       </ControlGroup>
+      <ControlGroup label="Blurness">
+        <ControlSlider
+          label="Icon Blur"
+          min={0}
+          max={20}
+          step={0.1}
+          value={[svgSettings.iconBlur]}
+          onValueChange={(value) => updateSvgSetting("iconBlur", value[0])}
+        />
+        <ControlSlider
+          label="Background Blur"
+          min={0}
+          max={20}
+          step={0.1}
+          value={[svgSettings.backgroundBlur]}
+          onValueChange={(value) =>
+            updateSvgSetting("backgroundBlur", value[0])
+          }
+        />
+      </ControlGroup>
       <ControlGroup label="Icon Skew">
         <ControlSlider
           label="Icon Skew X"
