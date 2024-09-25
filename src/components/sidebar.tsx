@@ -96,7 +96,7 @@ function IconControlGroup() {
         onChange={(color) => updateSvgSetting("svgColor", color)}
       />
       <ControlSlider
-        label="Fill Opacity"
+        label="Icon fill Opacity"
         min={0}
         max={1}
         step={0.01}
@@ -149,7 +149,7 @@ function IconControlGroup() {
           }
         />
         <ControlSlider
-          label="Shadow Offset X"
+          label="Inner Shadow Offset (X)"
           min={-20}
           max={20}
           step={1}
@@ -157,7 +157,7 @@ function IconControlGroup() {
           onValueChange={(value) => updateSvgSetting("innerShadowX", value[0])}
         />
         <ControlSlider
-          label="Inner Shadow Offset Y"
+          label="Inner Shadow Offset (Y)"
           min={-20}
           max={20}
           step={1}
@@ -185,7 +185,7 @@ function IconControlGroup() {
       </ControlGroup>
       <ControlGroup label="Icon Position">
         <ControlSlider
-          label="Icon Position X"
+          label="Icon Position (X)"
           min={-100}
           max={100}
           step={1}
@@ -198,7 +198,7 @@ function IconControlGroup() {
           }
         />
         <ControlSlider
-          label="Icon Position Y"
+          label="Icon Position (Y)"
           min={-100}
           max={100}
           step={1}
@@ -213,7 +213,7 @@ function IconControlGroup() {
       </ControlGroup>
       <ControlGroup label="Icon Skew">
         <ControlSlider
-          label="Icon Skew X"
+          label="Icon Skew (X)"
           min={-100}
           max={100}
           step={0.2}
@@ -221,7 +221,7 @@ function IconControlGroup() {
           onValueChange={(value) => updateSvgSetting("skewX", value[0])}
         />
         <ControlSlider
-          label="Icon Skew Y"
+          label="Icon Skew (Y)"
           min={-100}
           max={100}
           step={1}
@@ -273,7 +273,7 @@ function BackgroundControlGroup() {
           onValueChange={(value) => updateSvgSetting("shadowBlur", value[0])}
         />
         <ControlSlider
-          label="Shadow Offset X"
+          label="Background Shadow Offset (X)"
           min={-20}
           max={20}
           step={1}
@@ -281,7 +281,7 @@ function BackgroundControlGroup() {
           onValueChange={(value) => updateSvgSetting("shadowOffsetX", value[0])}
         />
         <ControlSlider
-          label="Shadow Offset Y"
+          label="Background Shadow Offset (Y)"
           min={-20}
           max={20}
           step={1}
