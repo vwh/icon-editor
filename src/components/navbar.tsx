@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useStore } from "@/store/useStore";
-import { variations } from "@/lib/preview";
+import { variations } from "@/lib/values";
 import {
   randomIconColor,
   randomIconName,

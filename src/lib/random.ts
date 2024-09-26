@@ -1,6 +1,6 @@
 import type { Icons } from "@/types";
 import * as svgs from "lucide-react";
-import { gradients } from "@/components/gradient-picker";
+import { gradients } from "@/lib/values";
 
 const iconNames = Object.keys(svgs.icons);
 
