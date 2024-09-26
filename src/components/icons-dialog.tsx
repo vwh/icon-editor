@@ -6,7 +6,10 @@ import {
   Dialog,
   DialogContent,
   DialogTrigger,
-  DialogClose
+  DialogClose,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -69,6 +72,12 @@ export default function IconsDialog() {
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader className="hidden">
+          <DialogTitle>Select an Icon</DialogTitle>
+          <DialogDescription>
+            Search for icons or select from the list below.
+          </DialogDescription>
+        </DialogHeader>
         <div className="flex flex-col gap-4">
           <Input
             type="text"

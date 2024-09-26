@@ -595,10 +595,10 @@ export function GradientPicker({
       <PopoverContent className="w-64">
         {!displayColorOnly && (
           <div className="mb-2 flex max-h-24 flex-wrap gap-1 overflow-auto">
-            {gradients.map((s) => (
+            {gradients.map((s, index) => (
               <button
                 type="button"
-                key={s}
+                key={index}
                 style={{ background: s }}
                 className="h-6 w-6 cursor-pointer rounded-md active:scale-105"
                 onClick={() => onChange(s)}
