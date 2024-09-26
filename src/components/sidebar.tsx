@@ -52,7 +52,7 @@ export default function Sidebar() {
   const [tapName, setTapName] = useState<"icon" | "background">("icon");
 
   return (
-    <aside className="w-full space-y-3 overflow-y-auto border-b-[3px] border-r-2 px-2 py-2 md:w-[500px] md:border-b-0">
+    <aside className="h-full w-full space-y-3 overflow-y-auto border-b-[3px] border-r-2 px-2 py-2 md:w-[500px] md:border-b-0">
       <div className="flex">
         <Button
           className="w-full rounded-none rounded-bl-lg rounded-tl-lg border-r-2"

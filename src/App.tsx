@@ -50,9 +50,9 @@ const App: React.FC = () => {
   return (
     <>
       <Navbar />
-      <main className="flex flex-col md:h-[calc(100vh-68px)] md:flex-row">
+      <main className="flex h-[calc(100vh-68px)] flex-col md:flex-row">
         <Sidebar />
-        <section className="relative flex h-[300px] w-full flex-grow items-center justify-center overflow-hidden bg-background md:h-full md:shadow-xl">
+        <section className="relative flex h-full w-full flex-grow items-center justify-center overflow-hidden bg-background md:shadow-xl">
           <div className="z-50" id="svg-container" style={containerStyle}>
             <div style={svgWrapperStyle}>
               <SvgComponent
