@@ -1,7 +1,11 @@
 import React, { useMemo } from "react";
 import { useStore } from "@/store/useStore";
 import { variations } from "@/lib/preview";
-import { randomIconColor, randomIconName } from "@/lib/random";
+import {
+  randomIconColor,
+  randomIconName,
+  randomGradientOrColor
+} from "@/lib/random";
 import type { Icons, SvgSettings } from "@/types";
 
 import { Button } from "@/components/ui/button";
@@ -92,7 +96,7 @@ const Navbar: React.FC = () => {
     setSelectedSvgName(randomIconName());
     setSvgSettings({
       ...svgSettings,
-      bgColor: randomIconColor(),
+      bgColor: randomGradientOrColor(),
       svgColor: randomIconColor(),
       fillColor: randomIconColor(),
       fillOpacity: Math.random() > 0.5 ? 1 : 0,

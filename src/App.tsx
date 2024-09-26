@@ -17,7 +17,7 @@ const App: React.FC = () => {
       width: "256px",
       height: "256px",
       borderRadius: `${svgSettings.radius}px`,
-      backgroundColor: svgSettings.bgColor,
+      background: svgSettings.bgColor,
       position: "relative" as const,
       overflow: "hidden",
       boxShadow: `${svgSettings.shadowOffsetX}px ${svgSettings.shadowOffsetY}px ${svgSettings.shadowBlur}px ${svgSettings.shadowColor}`,

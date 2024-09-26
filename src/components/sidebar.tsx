@@ -5,6 +5,7 @@ import { Slider } from "@/components/ui/slider";
 import { HexColorPicker } from "react-colorful";
 import IconsDialog from "./icons-dialog";
 import { Button } from "./ui/button";
+import { GradientPicker } from "./gradient-picker";
 
 type ControlProps = {
   label: string;
@@ -90,11 +91,18 @@ function IconControlGroup() {
         value={[svgSettings.opacity]}
         onValueChange={(value) => updateSvgSetting("opacity", value[0])}
       />
-      <ControlColor
-        label="Icon Color"
-        value={svgSettings.svgColor}
-        onChange={(color) => updateSvgSetting("svgColor", color)}
-      />
+      <div className="flex flex-col gap-1">
+        <ControlColor
+          label="Icon Color"
+          value={svgSettings.svgColor}
+          onChange={(color) => updateSvgSetting("svgColor", color)}
+        />
+        <GradientPicker
+          onChange={(color) => updateSvgSetting("svgColor", color)}
+          value={svgSettings.svgColor}
+          displayColorOnly={true}
+        />
+      </div>
       <ControlSlider
         label="Icon fill Opacity"
         min={0}
@@ -103,11 +111,18 @@ function IconControlGroup() {
         value={[svgSettings.fillOpacity]}
         onValueChange={(value) => updateSvgSetting("fillOpacity", value[0])}
       />
-      <ControlColor
-        label="Icon Filling Color"
-        value={svgSettings.fillColor}
-        onChange={(color) => updateSvgSetting("fillColor", color)}
-      />
+      <div className="flex flex-col gap-1">
+        <ControlColor
+          label="Icon Filling Color"
+          value={svgSettings.fillColor}
+          onChange={(color) => updateSvgSetting("fillColor", color)}
+        />
+        <GradientPicker
+          onChange={(color) => updateSvgSetting("fillColor", color)}
+          value={svgSettings.fillColor}
+          displayColorOnly={true}
+        />
+      </div>
       <ControlSlider
         label="Icon Border Width"
         min={0.1}
@@ -133,11 +148,18 @@ function IconControlGroup() {
         onValueChange={(value) => updateSvgSetting("iconBlur", value[0])}
       />
       <ControlGroup label="Inner Shadow">
-        <ControlColor
-          label="Inner Shadow Color"
-          value={svgSettings.innerShadowColor}
-          onChange={(color) => updateSvgSetting("innerShadowColor", color)}
-        />
+        <div className="flex flex-col gap-1">
+          <ControlColor
+            label="Inner Shadow Color"
+            value={svgSettings.innerShadowColor}
+            onChange={(color) => updateSvgSetting("innerShadowColor", color)}
+          />
+          <GradientPicker
+            onChange={(color) => updateSvgSetting("innerShadowColor", color)}
+            value={svgSettings.innerShadowColor}
+            displayColorOnly={true}
+          />
+        </div>
         <ControlSlider
           label="Inner Shadow Blur"
           min={0}
@@ -237,11 +259,17 @@ function BackgroundControlGroup() {
   const { svgSettings, updateSvgSetting } = useStore();
   return (
     <ControlGroup label="Background Customization">
-      <ControlColor
-        label="Background Color"
-        value={svgSettings.bgColor}
-        onChange={(color) => updateSvgSetting("bgColor", color)}
-      />
+      <div className="flex flex-col gap-1">
+        <ControlColor
+          label="Background Color"
+          value={svgSettings.bgColor}
+          onChange={(color) => updateSvgSetting("bgColor", color)}
+        />
+        <GradientPicker
+          onChange={(color) => updateSvgSetting("bgColor", color)}
+          value={svgSettings.bgColor}
+        />
+      </div>
       <ControlSlider
         label="Border Radius"
         min={0}
@@ -259,11 +287,18 @@ function BackgroundControlGroup() {
         onValueChange={(value) => updateSvgSetting("backgroundBlur", value[0])}
       />
       <ControlGroup label="Shadow">
-        <ControlColor
-          label="Background Shadow Color"
-          value={svgSettings.shadowColor}
-          onChange={(color) => updateSvgSetting("shadowColor", color)}
-        />
+        <div className="flex flex-col gap-1">
+          <ControlColor
+            label="Background Shadow Color"
+            value={svgSettings.shadowColor}
+            onChange={(color) => updateSvgSetting("shadowColor", color)}
+          />
+          <GradientPicker
+            onChange={(color) => updateSvgSetting("shadowColor", color)}
+            value={svgSettings.shadowColor}
+            displayColorOnly={true}
+          />
+        </div>
         <ControlSlider
           label="Background Shadow Blur"
           min={0}
