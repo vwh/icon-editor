@@ -3,7 +3,7 @@
 </div>
 
 <p align="center">
-  Create a beautiful logo/icon for your website
+  Easily create your own custom icons in just a few clicks 
 </p>
 
 <div align="center">
@@ -18,8 +18,8 @@
 <br>
 
 <div align="center">
-  <a href="https://github.com/vwh/icon-editor" target="_blank">
-    <img src="https://github.com/user-attachments/assets/9277784d-0a34-4205-b1bf-af0b2fb5bb9c" alt="Preview">
+  <a href="https://icon.vwh.sh/" target="_blank">
+    <img src="https://github.com/user-attachments/assets/6a077b1a-0f37-4cde-b375-5c5c4bd865e7" alt="Preview">
   </a>
 </div>
 
