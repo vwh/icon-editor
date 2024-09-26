@@ -110,6 +110,7 @@ const Navbar: React.FC = () => {
   return (
     <nav className="flex h-full w-full items-center justify-between gap-2 border-b-2 p-2">
       <a
+        title="View source code"
         href="https://github.com/vwh/icon-editor"
         target="_blank"
         rel="noreferrer"
