@@ -1,5 +1,7 @@
 import { useMemo, useState, useCallback } from "react";
 import { useStore } from "@/store/useStore";
+
+import { formatText } from "@/lib/formatter";
 import type { Icons } from "@/types";
 
 import {
@@ -13,6 +15,8 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Tooltiper } from "./tooltiper";
+
 import * as svgs from "lucide-react";
 
 const ICONS_PER_PAGE = 35;
@@ -37,15 +41,17 @@ export default function IconsDialog() {
       .map((name) => {
         const SvgComponent = svgs[name as Icons];
         return (
-          <DialogClose key={name}>
-            <Button
-              onClick={() => setSelectedSvgName(name as Icons)}
-              className="flex h-14 w-14 items-center justify-center rounded-lg transition-all hover:opacity-80 md:h-16 md:w-16"
-              title={name}
-            >
-              <SvgComponent className="h-full w-full" />
-            </Button>
-          </DialogClose>
+          <Tooltiper message={formatText(`${name}`)} key={name}>
+            <DialogClose>
+              <Button
+                aria-label={`Select ${name} icon`}
+                onClick={() => setSelectedSvgName(name as Icons)}
+                className="flex h-14 w-14 items-center justify-center rounded-lg transition-all hover:opacity-80 md:h-16 md:w-16"
+              >
+                <SvgComponent className="h-full w-full" />
+              </Button>
+            </DialogClose>
+          </Tooltiper>
         );
       });
     return { iconButtons: buttons, totalPages };
@@ -63,8 +69,8 @@ export default function IconsDialog() {
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          title="Select icon"
-          variant="outline"
+          aria-label="Select Icon"
+          variant="shine"
           className="flex h-12 w-full items-center justify-center gap-2"
         >
           <SvgComponent />
