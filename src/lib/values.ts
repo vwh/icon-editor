@@ -10,25 +10,27 @@ const variation0 = {
   ...base,
   fillColor: "#000000",
   fillOpacity: 0,
-  bgColor: "#FFFFFF",
-  svgColor: "#000000",
+  bgColor: "linear-gradient(to left top, rgb(21, 35, 49), rgb(0, 0, 0))",
+  svgColor: "#F0F0F0",
   shadowColor: "#000000"
 };
 
 const variation1 = {
   ...base,
-  bgColor: "#FFEDA0",
+  bgColor: "linear-gradient(to left top, rgb(0, 79, 249), rgb(255, 249, 76))",
   fillOpacity: 1,
-  fillColor: "#FFF",
-  strokeWidth: 2
+  fillColor: "#F0F0F0",
+  svgColor: "#F0F0F0",
+  strokeWidth: 1.8,
+  innerShadowBlur: 20
 };
 
 const variation2 = {
   ...base,
-  bgColor: "#A0D2FF",
-  fillColor: "#F0F0F0",
+  bgColor: "#FFEDA0",
   fillOpacity: 1,
-  strokeWidth: 1.8
+  fillColor: "#FFF",
+  strokeWidth: 2
 };
 
 export const variations = [variation0, variation1, variation2];

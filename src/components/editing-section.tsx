@@ -33,7 +33,7 @@ const ControlGroup: React.FC<ControlGroupProps> = ({
       <div className="flex items-center justify-between border-b-2 p-2">
         <label className="block text-sm font-medium">{label}</label>
         {rester && (
-          <Tooltiper message="Reset to default">
+          <Tooltiper message="Reset To Default">
             <button
               type="button"
               onClick={handleValueReset}
@@ -134,7 +134,7 @@ function IconControlGroup() {
           className="mt-1 flex h-12 w-full items-center justify-center gap-2"
         >
           <UploadIcon />
-          <span>Upload icon</span>
+          <span>Upload Icon</span>
         </Button>
         <input
           ref={inputRef}

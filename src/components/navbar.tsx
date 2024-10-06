@@ -1,11 +1,7 @@
 import React, { useMemo } from "react";
 import { useStore } from "@/store/useStore";
 
-import {
-  randomIconColor,
-  randomIconName,
-  randomGradientOrColor
-} from "@/lib/random";
+import { randomIconName, randomSimilarColorScheme } from "@/lib/random";
 import { variations } from "@/lib/values";
 import { handleDownload } from "@/lib/download";
 import type { Icons, SvgSettings } from "@/types";
@@ -24,15 +20,25 @@ interface VariationButtonProps {
 
 const VariationButton: React.FC<VariationButtonProps> = React.memo(
   ({ svgSettings, onClick, SvgComponent }) => {
+    const svgStyle = useMemo(
+      () => ({
+        position: "absolute" as const,
+        transform: `rotate(${svgSettings.rotation}deg) scale(${svgSettings.scale})`,
+        filter: `drop-shadow(${svgSettings.innerShadowX}px ${svgSettings.innerShadowY}px ${svgSettings.innerShadowBlur}px ${svgSettings.innerShadowColor})`
+      }),
+      [svgSettings]
+    );
+
     const containerStyle = useMemo(
       () => ({
         width: "50px",
         height: "50px",
         borderRadius: `${svgSettings.radius}px`,
-        backgroundColor: svgSettings.bgColor,
+        background: svgSettings.bgColor,
         position: "relative" as const,
         overflow: "hidden",
-        boxShadow: `${svgSettings.shadowOffsetX}px ${svgSettings.shadowOffsetY}px ${svgSettings.shadowBlur}px ${svgSettings.shadowColor}`
+        boxShadow: `${svgSettings.shadowOffsetX}px ${svgSettings.shadowOffsetY}px ${svgSettings.shadowBlur}px ${svgSettings.shadowColor}`,
+        filter: `blur(${svgSettings.backgroundBlur}px)`
       }),
       [svgSettings]
     );
@@ -42,15 +48,9 @@ const VariationButton: React.FC<VariationButtonProps> = React.memo(
         position: "absolute" as const,
         top: `${25 + svgSettings.position.y - svgSettings.size / 2}px`,
         left: `${25 + svgSettings.position.x - svgSettings.size / 2}px`,
-        opacity: svgSettings.opacity
-      }),
-      [svgSettings]
-    );
-
-    const svgStyle = useMemo(
-      () => ({
-        position: "absolute" as const,
-        transform: `rotate(${svgSettings.rotation}deg) scale(${svgSettings.scale})`
+        transform: `skew(${svgSettings.skewX}deg, ${svgSettings.skewY}deg)`,
+        opacity: svgSettings.opacity,
+        filter: `blur(${svgSettings.iconBlur}px)`
       }),
       [svgSettings]
     );
@@ -105,14 +105,13 @@ const Navbar: React.FC = () => {
   };
 
   const handleRandomClick = () => {
+    const { background, icon } = randomSimilarColorScheme();
     setCustomSvg(null);
     setSelectedSvgName(randomIconName());
     setSvgSettings({
       ...svgSettings,
-      bgColor: randomGradientOrColor(),
-      svgColor: randomIconColor(),
-      fillColor: randomIconColor(),
-      fillOpacity: Math.random() > 0.5 ? 1 : 0,
+      bgColor: background,
+      svgColor: icon,
       innerShadowColor: "#0A0B0B",
       innerShadowBlur: Math.floor(Math.random() * 4),
       innerShadowX: 2,
