@@ -55,7 +55,11 @@ const App: React.FC = () => {
       <main className="flex h-[calc(100vh-68px)] flex-col md:flex-row">
         <EditingSection />
         <section className="relative flex h-full w-full flex-grow items-center justify-center overflow-hidden bg-background md:shadow-xl">
-          <div className="z-50" id="svg-container" style={containerStyle}>
+          <div
+            className="z-50 transition-all hover:scale-105"
+            id="svg-container"
+            style={containerStyle}
+          >
             <div style={svgWrapperStyle}>
               <SvgComponent
                 fill={svgSettings.fillColor}

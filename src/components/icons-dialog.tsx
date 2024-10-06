@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tooltiper } from "./tooltiper";
 
+import { SearchIcon } from "lucide-react";
 import * as svgs from "lucide-react";
 
 const ICONS_PER_PAGE = 35;
@@ -85,13 +86,16 @@ export default function IconsDialog() {
           </DialogDescription>
         </DialogHeader>
         <div className="flex flex-col gap-4">
-          <Input
-            type="text"
-            placeholder="Search Icons..."
-            value={searchTerm}
-            onChange={handleSearch}
-            className="w-full"
-          />
+          <div className="flex items-center">
+            <SearchIcon className="h-7 w-7 pl-2 text-gray-500" />
+            <Input
+              type="text"
+              placeholder="Search Icons"
+              value={searchTerm}
+              onChange={handleSearch}
+              className="ml-2 w-full focus:outline-none"
+            />
+          </div>
           <div className="flex flex-wrap items-center justify-center gap-1 p-2">
             {iconButtons}
           </div>
