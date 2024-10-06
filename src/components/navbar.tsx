@@ -86,11 +86,17 @@ const VariationButton: React.FC<VariationButtonProps> = React.memo(
 );
 
 const Navbar: React.FC = () => {
-  const { selectedSvgName, setSelectedSvgName, setSvgSettings, svgSettings } =
-    useStore();
+  const {
+    selectedSvgName,
+    setSelectedSvgName,
+    setSvgSettings,
+    svgSettings,
+    setCustomSvg
+  } = useStore();
   const SvgComponent = svgs[selectedSvgName as Icons];
 
   const handleVariationClick = (svgSettings: SvgSettings) => {
+    setCustomSvg(null);
     setSvgSettings({
       ...svgSettings,
       size: 190,
@@ -99,6 +105,7 @@ const Navbar: React.FC = () => {
   };
 
   const handleRandomClick = () => {
+    setCustomSvg(null);
     setSelectedSvgName(randomIconName());
     setSvgSettings({
       ...svgSettings,

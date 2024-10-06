@@ -4,12 +4,14 @@ import type { Icons, SvgSettings } from "@/types";
 interface State {
   svgSettings: SvgSettings;
   selectedSvgName: Icons;
+  customSvg: string | null;
 }
 
 interface Actions {
   setSvgSettings: (svgSettings: SvgSettings) => void;
   updateSvgSetting: (key: string, value: unknown) => void;
   setSelectedSvgName: (name: Icons) => void;
+  setCustomSvg: (customSvg: string | null) => void;
 }
 
 export const defaultSvgSettings: SvgSettings = {
@@ -40,7 +42,8 @@ export const defaultSvgSettings: SvgSettings = {
 
 const initialState: State = {
   selectedSvgName: "Paintbrush",
-  svgSettings: defaultSvgSettings
+  svgSettings: defaultSvgSettings,
+  customSvg: null
 };
 
 export const useStore = create<State & Actions>((set) => ({
@@ -59,5 +62,9 @@ export const useStore = create<State & Actions>((set) => ({
 
   setSelectedSvgName: (name: Icons) => {
     set({ selectedSvgName: name });
+  },
+
+  setCustomSvg: (customSvg: string | null) => {
+    set({ customSvg });
   }
 }));

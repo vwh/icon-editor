@@ -23,7 +23,7 @@ import * as svgs from "lucide-react";
 const ICONS_PER_PAGE = 35;
 
 export default function IconsDialog() {
-  const { setSelectedSvgName, selectedSvgName } = useStore();
+  const { setSelectedSvgName, selectedSvgName, setCustomSvg } = useStore();
   const [currentPage, setCurrentPage] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -46,7 +46,10 @@ export default function IconsDialog() {
             <DialogClose>
               <Button
                 aria-label={`Select ${name} icon`}
-                onClick={() => setSelectedSvgName(name as Icons)}
+                onClick={() => {
+                  setCustomSvg(null);
+                  setSelectedSvgName(name as Icons);
+                }}
                 className="flex h-14 w-14 items-center justify-center rounded-lg transition-all hover:opacity-80 md:h-16 md:w-16"
               >
                 <SvgComponent className="h-full w-full" />

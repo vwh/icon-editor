@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useEffect, useState } from "react";
 import { useStore } from "@/store/useStore";
 
 import { cn } from "@/lib/utils";
@@ -11,8 +11,38 @@ import DotPattern from "@/components/magicui/dot-pattern";
 import * as svgs from "lucide-react";
 
 const App: React.FC = () => {
-  const { svgSettings, selectedSvgName } = useStore();
+  const { svgSettings, selectedSvgName, customSvg } = useStore();
   const SvgComponent = svgs[selectedSvgName as Icons];
+
+  const [customSvgContent, setCustomSvgContent] = useState<string | null>(null);
+  const [customViewBox, setCustomViewBox] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (customSvg) {
+      // Extract the SVG content from the base64 string
+      const svgContent = atob(customSvg.split(",")[1]);
+      setCustomSvgContent(svgContent);
+      // Extract viewBox
+      const viewBoxMatch = svgContent.match(/viewBox="([^"]+)"/);
+      if (viewBoxMatch && viewBoxMatch[1]) {
+        setCustomViewBox(viewBoxMatch[1]);
+      } else {
+        setCustomViewBox(null);
+      }
+    } else {
+      setCustomSvgContent(null);
+      setCustomViewBox(null);
+    }
+  }, [customSvg]);
+
+  const svgStyle = useMemo(
+    () => ({
+      position: "absolute" as const,
+      transform: `rotate(${svgSettings.rotation}deg) scale(${svgSettings.scale})`,
+      filter: `drop-shadow(${svgSettings.innerShadowX}px ${svgSettings.innerShadowY}px ${svgSettings.innerShadowBlur}px ${svgSettings.innerShadowColor})`
+    }),
+    [svgSettings]
+  );
 
   const containerStyle = useMemo(
     () => ({
@@ -40,14 +70,25 @@ const App: React.FC = () => {
     [svgSettings]
   );
 
-  const svgStyle = useMemo(
-    () => ({
-      position: "absolute" as const,
-      transform: `rotate(${svgSettings.rotation}deg) scale(${svgSettings.scale})`,
-      filter: `drop-shadow(${svgSettings.innerShadowX}px ${svgSettings.innerShadowY}px ${svgSettings.innerShadowBlur}px ${svgSettings.innerShadowColor})`
-    }),
-    [svgSettings]
-  );
+  const customSvgStyle = useMemo(() => {
+    if (!customViewBox) return svgStyle;
+
+    const [, , vbWidth, vbHeight] = customViewBox.split(" ").map(Number);
+    const scale = Math.min(
+      svgSettings.size / vbWidth,
+      svgSettings.size / vbHeight
+    );
+
+    return {
+      ...svgStyle,
+      transform: `${svgStyle.transform} scale(${scale})`,
+      fill: svgSettings.fillColor,
+      fillOpacity: svgSettings.fillOpacity,
+      stroke: svgSettings.svgColor,
+      strokeWidth: `${svgSettings.strokeWidth}px`,
+      opacity: svgSettings.opacity
+    };
+  }, [customViewBox, svgSettings, svgStyle]);
 
   return (
     <>
@@ -61,17 +102,28 @@ const App: React.FC = () => {
             style={containerStyle}
           >
             <div style={svgWrapperStyle}>
-              <SvgComponent
-                fill={svgSettings.fillColor}
-                fillOpacity={svgSettings.fillOpacity}
-                stroke={svgSettings.svgColor}
-                strokeWidth={svgSettings.strokeWidth}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                width={svgSettings.size}
-                height={svgSettings.size}
-                style={svgStyle}
-              />
+              {customSvgContent ? (
+                <svg
+                  width={svgSettings.size}
+                  height={svgSettings.size}
+                  viewBox={customViewBox || undefined}
+                  style={customSvgStyle}
+                  dangerouslySetInnerHTML={{ __html: customSvgContent }}
+                  preserveAspectRatio="xMidYMid meet"
+                />
+              ) : (
+                <SvgComponent
+                  fill={svgSettings.fillColor}
+                  fillOpacity={svgSettings.fillOpacity}
+                  stroke={svgSettings.svgColor}
+                  strokeWidth={svgSettings.strokeWidth}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  width={svgSettings.size}
+                  height={svgSettings.size}
+                  style={svgStyle}
+                />
+              )}
             </div>
           </div>
           <DotPattern

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useStore } from "@/store/useStore";
 
 import { Slider } from "@/components/ui/slider";
@@ -6,6 +6,8 @@ import { Button } from "./ui/button";
 import { HexColorPicker } from "react-colorful";
 import IconsDialog from "./icons-dialog";
 import ColorPicker from "./color-picker";
+
+import { UploadIcon } from "lucide-react";
 
 type ControlProps = {
   label: string;
@@ -79,11 +81,44 @@ export default function EditingSection() {
 }
 
 function IconControlGroup() {
-  const { svgSettings, updateSvgSetting } = useStore();
+  const { svgSettings, updateSvgSetting, setCustomSvg } = useStore();
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  function handleUploadIcon(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const base64 = reader.result as string;
+      setCustomSvg(base64);
+      if (inputRef.current) {
+        inputRef.current.value = "";
+      }
+    };
+  }
+
   return (
     <ControlGroup label="Icon Customization">
       <div className="mt-2">
         <IconsDialog />
+        <Button
+          onClick={() => inputRef.current?.click()}
+          className="mt-1 flex h-12 w-full items-center justify-center gap-2"
+        >
+          <UploadIcon />
+          <span>Upload icon</span>
+        </Button>
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/svg+xml"
+          onChange={handleUploadIcon}
+          className="hidden"
+          style={{ display: "none" }}
+        />
       </div>
       <ControlSlider
         label="Icon Opacity"
@@ -270,6 +305,7 @@ function BackgroundControlGroup() {
         <ColorPicker
           onChange={(color) => updateSvgSetting("bgColor", color)}
           value={svgSettings.bgColor}
+          displayColorOnly={false}
         />
       </div>
       <ControlSlider
