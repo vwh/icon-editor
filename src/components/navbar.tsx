@@ -132,11 +132,11 @@ const Navbar: React.FC = () => {
         >
           <img
             src="./logo.webp"
-            aria-label="Icons editor logo"
+            aria-label="Icon editor logo"
             className="h-10 w-auto"
             alt="Logo"
           />
-          <span>Icons Editor</span>
+          <span>Icon Editor</span>
         </a>
       </Tooltiper>
       <div className="flex gap-1">
