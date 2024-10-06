@@ -7,7 +7,8 @@ import { HexColorPicker } from "react-colorful";
 import IconsDialog from "./icons-dialog";
 import ColorPicker from "./color-picker";
 
-import { UploadIcon } from "lucide-react";
+import { UploadIcon, RotateCcwIcon } from "lucide-react";
+import { Tooltiper } from "./tooltiper";
 
 type ControlProps = {
   label: string;
@@ -15,14 +16,38 @@ type ControlProps = {
 
 type ControlGroupProps = ControlProps & {
   children: React.ReactNode;
+  rester?: () => void;
 };
 
-const ControlGroup: React.FC<ControlGroupProps> = ({ children, label }) => (
-  <div className="rounded border">
-    <label className="block border-b-2 p-2 text-sm font-medium">{label}</label>
-    <span className="flex flex-col gap-3 px-2 pb-3 pt-1">{children}</span>
-  </div>
-);
+const ControlGroup: React.FC<ControlGroupProps> = ({
+  children,
+  label,
+  rester
+}) => {
+  function handleValueReset() {
+    if (rester) rester();
+  }
+
+  return (
+    <div className="rounded border">
+      <div className="flex items-center justify-between border-b-2 p-2">
+        <label className="block text-sm font-medium">{label}</label>
+        {rester && (
+          <Tooltiper message="Reset to default">
+            <button
+              type="button"
+              onClick={handleValueReset}
+              className="transition-all hover:scale-105"
+            >
+              <RotateCcwIcon className="h-5 w-5" />
+            </button>
+          </Tooltiper>
+        )}
+      </div>
+      <span className="flex flex-col gap-3 px-2 pb-3 pt-1">{children}</span>
+    </div>
+  );
+};
 
 type ControlSliderProps = ControlProps &
   React.ComponentPropsWithoutRef<typeof Slider>;
@@ -242,7 +267,10 @@ function IconControlGroup() {
           onValueChange={(value) => updateSvgSetting("scale", value[0])}
         />
       </ControlGroup>
-      <ControlGroup label="Icon Position">
+      <ControlGroup
+        label="Icon Position"
+        rester={() => updateSvgSetting("position", { x: 0, y: 0 })}
+      >
         <ControlSlider
           label="Icon Position (X)"
           min={-100}
@@ -270,7 +298,13 @@ function IconControlGroup() {
           }
         />
       </ControlGroup>
-      <ControlGroup label="Icon Skew">
+      <ControlGroup
+        label="Icon Skew"
+        rester={() => {
+          updateSvgSetting("skewX", 0);
+          updateSvgSetting("skewY", 0);
+        }}
+      >
         <ControlSlider
           label="Icon Skew (X)"
           min={-100}
