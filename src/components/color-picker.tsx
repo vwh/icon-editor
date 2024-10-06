@@ -1,3 +1,6 @@
+import { cn } from "@/lib/utils";
+import { gradients } from "@/lib/values";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -5,14 +8,13 @@ import {
   PopoverContent,
   PopoverTrigger
 } from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
-import { Paintbrush } from "lucide-react";
-import { gradients } from "@/lib/values";
 
-export function GradientPicker({
+import { Paintbrush } from "lucide-react";
+
+export default function ColorPicker({
   value,
   onChange,
-  displayColorOnly
+  displayColorOnly = true
 }: {
   value: string;
   onChange: (background: string) => void;
@@ -22,7 +24,7 @@ export function GradientPicker({
     <Popover>
       <PopoverTrigger asChild>
         <Button
-          variant={"outline"}
+          variant="outline"
           className={cn(
             "w-full justify-start text-left font-normal",
             !value && "text-muted-foreground"

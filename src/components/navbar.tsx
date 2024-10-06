@@ -1,22 +1,24 @@
 import React, { useMemo } from "react";
 import { useStore } from "@/store/useStore";
-import { variations } from "@/lib/values";
+
 import {
   randomIconColor,
   randomIconName,
   randomGradientOrColor
 } from "@/lib/random";
+import { variations } from "@/lib/values";
+import { handleDownload } from "@/lib/download";
 import type { Icons, SvgSettings } from "@/types";
 
 import { Button } from "@/components/ui/button";
+
 import { DownloadIcon } from "lucide-react";
 import * as svgs from "lucide-react";
-import { handleDownload } from "@/lib/download";
 
 interface VariationButtonProps {
   svgSettings: SvgSettings;
   onClick: () => void;
-  SvgComponent: React.ComponentType<any>;
+  SvgComponent: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 
 const VariationButton: React.FC<VariationButtonProps> = React.memo(
@@ -64,6 +66,7 @@ const VariationButton: React.FC<VariationButtonProps> = React.memo(
             <SvgComponent
               fill={svgSettings.fillColor}
               fillOpacity={svgSettings.fillOpacity}
+              fillRule="evenodd"
               stroke={svgSettings.svgColor}
               strokeWidth={svgSettings.strokeWidth}
               strokeLinecap="round"
@@ -143,8 +146,8 @@ const Navbar: React.FC = () => {
         ))}
       </div>
       <Button title="Download as PNG" onClick={handleDownload}>
-        <DownloadIcon />
-        <span className="ml-2 md:text-lg">Download</span>
+        <DownloadIcon className="h-6 w-6" />
+        <span className="ml-2 font-semibold">Download</span>
       </Button>
     </nav>
   );

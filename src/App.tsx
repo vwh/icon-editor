@@ -1,11 +1,13 @@
 import { useMemo } from "react";
 import { useStore } from "@/store/useStore";
-import type { Icons } from "@/types";
+
 import { cn } from "@/lib/utils";
+import type { Icons } from "@/types";
 
 import Navbar from "@/components/navbar";
-import Sidebar from "@/components/sidebar";
+import EditingSection from "@/components/editing-section";
 import DotPattern from "@/components/magicui/dot-pattern";
+
 import * as svgs from "lucide-react";
 
 const App: React.FC = () => {
@@ -51,7 +53,7 @@ const App: React.FC = () => {
     <>
       <Navbar />
       <main className="flex h-[calc(100vh-68px)] flex-col md:flex-row">
-        <Sidebar />
+        <EditingSection />
         <section className="relative flex h-full w-full flex-grow items-center justify-center overflow-hidden bg-background md:shadow-xl">
           <div className="z-50" id="svg-container" style={containerStyle}>
             <div style={svgWrapperStyle}>
