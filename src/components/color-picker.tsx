@@ -11,7 +11,7 @@ import {
 
 import { Paintbrush } from "lucide-react";
 
-export default function ColorPicker({
+function ColorPicker({
   value,
   onChange,
   displayColorOnly = true
@@ -30,7 +30,7 @@ export default function ColorPicker({
             !value && "text-muted-foreground"
           )}
         >
-          <div className="flex w-full items-center gap-2">
+          <section className="flex w-full items-center gap-2">
             {value ? (
               <div
                 className="h-4 w-4 rounded !bg-cover !bg-center transition-all"
@@ -41,29 +41,29 @@ export default function ColorPicker({
             )}
             <div className="w-full flex-1 truncate">
               {displayColorOnly
-                ? value && value.startsWith("#")
+                ? value?.startsWith("#")
                   ? value
                   : "Color Picker"
-                : value && !value.startsWith("#")
+                : value && !value?.startsWith("#")
                   ? value
                   : "Gradient Picker"}
             </div>
-          </div>
+          </section>
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-64">
         {!displayColorOnly && (
-          <div className="mb-2 flex max-h-24 flex-wrap gap-1 overflow-auto">
-            {gradients.map((s, index) => (
+          <section className="mb-2 flex max-h-24 flex-wrap gap-1 overflow-auto">
+            {gradients.map((s) => (
               <button
                 type="button"
-                key={index}
+                key={s}
                 style={{ background: s }}
                 className="h-6 w-6 cursor-pointer rounded-md active:scale-105"
                 onClick={() => onChange(s)}
               />
             ))}
-          </div>
+          </section>
         )}
         <Input
           id="custom"
@@ -75,3 +75,5 @@ export default function ColorPicker({
     </Popover>
   );
 }
+
+export default ColorPicker;

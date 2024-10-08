@@ -65,10 +65,12 @@
   }
 }
 
+/* React Colorful */
 .react-colorful {
   height: 140px !important;
   width: 100% !important;
 }
+
 .react-colorful__pointer {
   width: 23px !important;
   height: 23px !important;

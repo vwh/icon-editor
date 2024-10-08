@@ -138,7 +138,7 @@ const Navbar: React.FC = () => {
           <span>Icon Editor</span>
         </a>
       </Tooltiper>
-      <div className="flex gap-1">
+      <section className="flex gap-1">
         <Tooltiper message="Random Variation">
           <button
             className="mx-2 items-center justify-center rounded-lg"
@@ -157,7 +157,7 @@ const Navbar: React.FC = () => {
             SvgComponent={SvgComponent}
           />
         ))}
-      </div>
+      </section>
       <Tooltiper message="Download as PNG">
         <Button aria-label="Download as PNG" onClick={handleDownload}>
           <DownloadIcon className="h-6 w-6" />

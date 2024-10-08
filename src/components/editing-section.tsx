@@ -29,9 +29,9 @@ const ControlGroup: React.FC<ControlGroupProps> = ({
   }
 
   return (
-    <div className="rounded border">
+    <section className="rounded border">
       <div className="flex items-center justify-between border-b-2 p-2">
-        <label className="block text-sm font-medium">{label}</label>
+        <p className="block text-sm font-medium">{label}</p>
         {rester && (
           <Tooltiper message="Reset To Default">
             <button
@@ -45,7 +45,7 @@ const ControlGroup: React.FC<ControlGroupProps> = ({
         )}
       </div>
       <span className="flex flex-col gap-3 px-2 pb-3 pt-1">{children}</span>
-    </div>
+    </section>
   );
 };
 
@@ -54,7 +54,7 @@ type ControlSliderProps = ControlProps &
 
 const ControlSlider: React.FC<ControlSliderProps> = ({ label, ...props }) => (
   <div>
-    <label className="mb-1 block text-sm font-medium">{label}</label>
+    <p className="mb-1 block text-sm font-medium">{label}</p>
     <Slider {...props} />
   </div>
 );
@@ -70,7 +70,7 @@ const ControlColor: React.FC<ControlColorProps> = ({
   label
 }) => (
   <div>
-    <label className="mb-1 block text-sm font-medium">{label}</label>
+    <p className="mb-1 block text-sm font-medium">{label}</p>
     <HexColorPicker className="w-full" color={value} onChange={onChange} />
   </div>
 );
@@ -80,7 +80,7 @@ export default function EditingSection() {
 
   return (
     <aside className="h-full w-full space-y-3 overflow-y-auto border-b-[3px] border-r-2 p-3 md:w-[500px] md:border-b-0">
-      <div className="flex">
+      <section className="flex">
         <Button
           variant="gooeyLeft"
           className="w-full rounded-none rounded-bl rounded-tl border-r-2"
@@ -97,10 +97,10 @@ export default function EditingSection() {
         >
           Background
         </Button>
-      </div>
-      <div className="space-y-3 md:border-b-0">
+      </section>
+      <section className="space-y-3 md:border-b-0">
         {tapName === "icon" ? <IconControlGroup /> : <BackgroundControlGroup />}
-      </div>
+      </section>
     </aside>
   );
 }
@@ -127,7 +127,7 @@ function IconControlGroup() {
 
   return (
     <ControlGroup label="Icon Customization">
-      <div className="mt-2">
+      <section className="mt-2">
         <IconsDialog />
         <Button
           onClick={() => inputRef.current?.click()}
@@ -144,7 +144,7 @@ function IconControlGroup() {
           className="hidden"
           style={{ display: "none" }}
         />
-      </div>
+      </section>
       <ControlSlider
         label="Icon Opacity"
         min={0}
@@ -153,7 +153,7 @@ function IconControlGroup() {
         value={[svgSettings.opacity]}
         onValueChange={(value) => updateSvgSetting("opacity", value[0])}
       />
-      <div className="flex flex-col gap-[6px]">
+      <section className="flex flex-col gap-[6px]">
         <ControlColor
           label="Icon Color"
           value={svgSettings.svgColor}
@@ -162,9 +162,8 @@ function IconControlGroup() {
         <ColorPicker
           onChange={(color) => updateSvgSetting("svgColor", color)}
           value={svgSettings.svgColor}
-          displayColorOnly={true}
         />
-      </div>
+      </section>
       <ControlSlider
         label="Icon fill Opacity"
         min={0}
@@ -173,7 +172,7 @@ function IconControlGroup() {
         value={[svgSettings.fillOpacity]}
         onValueChange={(value) => updateSvgSetting("fillOpacity", value[0])}
       />
-      <div className="flex flex-col gap-[6px]">
+      <section className="flex flex-col gap-[6px]">
         <ControlColor
           label="Icon Filling Color"
           value={svgSettings.fillColor}
@@ -182,9 +181,8 @@ function IconControlGroup() {
         <ColorPicker
           onChange={(color) => updateSvgSetting("fillColor", color)}
           value={svgSettings.fillColor}
-          displayColorOnly={true}
         />
-      </div>
+      </section>
       <ControlSlider
         label="Icon Border Width"
         min={0.1}
@@ -210,7 +208,7 @@ function IconControlGroup() {
         onValueChange={(value) => updateSvgSetting("iconBlur", value[0])}
       />
       <ControlGroup label="Inner Shadow">
-        <div className="flex flex-col gap-[6px]">
+        <section className="flex flex-col gap-[6px]">
           <ControlColor
             label="Inner Shadow Color"
             value={svgSettings.innerShadowColor}
@@ -219,9 +217,8 @@ function IconControlGroup() {
           <ColorPicker
             onChange={(color) => updateSvgSetting("innerShadowColor", color)}
             value={svgSettings.innerShadowColor}
-            displayColorOnly={true}
           />
-        </div>
+        </section>
         <ControlSlider
           label="Inner Shadow Blur"
           min={0}
@@ -330,7 +327,7 @@ function BackgroundControlGroup() {
   const { svgSettings, updateSvgSetting } = useStore();
   return (
     <ControlGroup label="Background Customization">
-      <div className="flex flex-col gap-[6px]">
+      <section className="flex flex-col gap-[6px]">
         <ControlColor
           label="Background Color"
           value={svgSettings.bgColor}
@@ -341,7 +338,7 @@ function BackgroundControlGroup() {
           value={svgSettings.bgColor}
           displayColorOnly={false}
         />
-      </div>
+      </section>
       <ControlSlider
         label="Border Radius"
         min={0}
@@ -359,7 +356,7 @@ function BackgroundControlGroup() {
         onValueChange={(value) => updateSvgSetting("backgroundBlur", value[0])}
       />
       <ControlGroup label="Shadow">
-        <div className="flex flex-col gap-[6px]">
+        <section className="flex flex-col gap-[6px]">
           <ControlColor
             label="Background Shadow Color"
             value={svgSettings.shadowColor}
@@ -368,9 +365,8 @@ function BackgroundControlGroup() {
           <ColorPicker
             onChange={(color) => updateSvgSetting("shadowColor", color)}
             value={svgSettings.shadowColor}
-            displayColorOnly={true}
           />
-        </div>
+        </section>
         <ControlSlider
           label="Background Shadow Blur"
           min={0}

@@ -19,12 +19,10 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (customSvg) {
-      // Extract the SVG content from the base64 string
       const svgContent = atob(customSvg.split(",")[1]);
       setCustomSvgContent(svgContent);
-      // Extract viewBox
       const viewBoxMatch = svgContent.match(/viewBox="([^"]+)"/);
-      if (viewBoxMatch && viewBoxMatch[1]) {
+      if (viewBoxMatch?.[1]) {
         setCustomViewBox(viewBoxMatch[1]);
       } else {
         setCustomViewBox(null);

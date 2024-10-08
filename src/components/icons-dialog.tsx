@@ -88,7 +88,7 @@ export default function IconsDialog() {
             Search for icons or select from the list below.
           </DialogDescription>
         </DialogHeader>
-        <div className="flex flex-col gap-4">
+        <section className="flex flex-col gap-4">
           <div className="flex items-center">
             <SearchIcon className="h-7 w-7 pl-2 text-gray-500" />
             <Input
@@ -123,7 +123,7 @@ export default function IconsDialog() {
               <svgs.ChevronRight />
             </Button>
           </div>
-        </div>
+        </section>
       </DialogContent>
     </Dialog>
   );
