@@ -3,13 +3,26 @@ import { useStore } from "@/store/useStore";
 
 import { randomIconName, randomSimilarColorScheme } from "@/lib/random";
 import { variations } from "@/lib/values";
-import { handleDownload } from "@/lib/download";
+import { handleDownload, handleCopyImage } from "@/lib/image";
 import type { Icons, SvgSettings } from "@/types";
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
 import { Tooltiper } from "./tooltiper";
 import { Button } from "@/components/ui/button";
 
-import { DownloadIcon } from "lucide-react";
+import {
+  DownloadIcon,
+  UploadIcon,
+  ImageIcon,
+  FileImageIcon,
+  CopyIcon
+} from "lucide-react";
 import * as svgs from "lucide-react";
 
 interface VariationButtonProps {
@@ -119,6 +132,16 @@ const Navbar: React.FC = () => {
     });
   };
 
+  const handleExportSettings = () => {
+    const settingsToBase64 = btoa(JSON.stringify(svgSettings));
+    const url = new URL(window.location.href);
+    url.searchParams.set("s", settingsToBase64);
+    window.history.replaceState({}, "", url);
+    navigator.clipboard.writeText(url.toString()).catch((err) => {
+      console.error("Failed to copy the URL: ", err);
+    });
+  };
+
   return (
     <nav className="flex h-full w-full items-center justify-between gap-2 border-b-2 p-2">
       <Tooltiper message="View Source Code">
@@ -158,12 +181,35 @@ const Navbar: React.FC = () => {
           />
         ))}
       </section>
-      <Tooltiper message="Download as PNG">
-        <Button aria-label="Download as PNG" onClick={handleDownload}>
-          <DownloadIcon className="h-6 w-6" />
-          <span className="ml-2 font-semibold">Download</span>
-        </Button>
-      </Tooltiper>
+
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button aria-label="Download as PNG">
+            <DownloadIcon className="h-6 w-6" />
+            <span className="ml-2 font-semibold">Download</span>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className="w-56">
+          <DropdownMenuGroup>
+            <DropdownMenuItem onClick={() => handleDownload("png")}>
+              <FileImageIcon className="mr-2 h-4 w-4" />
+              <span>Download as PNG</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => handleDownload("jpg")}>
+              <ImageIcon className="mr-2 h-4 w-4" />
+              <span>Download as JPG</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={handleCopyImage}>
+              <CopyIcon className="mr-2 h-4 w-4" />
+              <span>Copy Image</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={handleExportSettings}>
+              <UploadIcon className="mr-2 h-4 w-4" />
+              <span>Export Settings</span>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </nav>
   );
 };

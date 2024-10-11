@@ -11,11 +11,21 @@ import DotPattern from "@/components/magicui/dot-pattern";
 import * as svgs from "lucide-react";
 
 const App: React.FC = () => {
-  const { svgSettings, selectedSvgName, customSvg } = useStore();
+  const { svgSettings, selectedSvgName, setSvgSettings, customSvg } =
+    useStore();
   const SvgComponent = svgs[selectedSvgName as Icons];
 
   const [customSvgContent, setCustomSvgContent] = useState<string | null>(null);
   const [customViewBox, setCustomViewBox] = useState<string | null>(null);
+
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    const settingsFromUrl = url.searchParams.get("s");
+    if (settingsFromUrl) {
+      const settingsFromBase64 = JSON.parse(atob(settingsFromUrl));
+      setSvgSettings(settingsFromBase64);
+    }
+  }, []);
 
   useEffect(() => {
     if (customSvg) {
