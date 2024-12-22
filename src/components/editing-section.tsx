@@ -83,17 +83,15 @@ export default function EditingSection() {
       <section className="flex">
         <Button
           variant="gooeyLeft"
-          className="w-full rounded-none rounded-bl rounded-tl border-r-2"
+          className={`${tapName === "icon" && "opacity-65"} w-full rounded-none rounded-bl rounded-tl border-r-2`}
           onClick={() => setTapName("icon")}
-          disabled={tapName === "icon"}
         >
           Icon
         </Button>
         <Button
           variant="gooeyRight"
-          className="w-full rounded-none rounded-br rounded-tr"
+          className={`${tapName === "background" && "opacity-65"} w-full rounded-none rounded-br rounded-tr`}
           onClick={() => setTapName("background")}
-          disabled={tapName === "background"}
         >
           Background
         </Button>
