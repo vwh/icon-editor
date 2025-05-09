@@ -50,7 +50,7 @@
     "typescript": "^5.2.2",
     "vite": "^5.4.6",
     "vite-plugin-compression": "^0.5.1",
-    "vite-plugin-dynamic-import": "^1.5.0",
+    "vite-plugin-dynamic-import": "^1.6.0",
     "vite-plugin-imagemin": "^0.6.1"
   },
   "packageManager": "npm@10.5.0"
